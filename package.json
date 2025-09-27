@@ -3,18 +3,22 @@
   "version": "1.0.0",
   "type": "module",
   "license": "MIT",
- "scripts": {
+
+"scripts": {
   "dev": "cross-env NODE_ENV=development tsx server/index.ts",
-  "build": "npm run build:server && npm run build:client",
+  "build": "npm run build:server && npm run build:client && npm run migrate:deploy",
   "build:server": "tsc -p tsconfig.json",
   "build:client": "vite build",
   "start": "cross-env NODE_ENV=production node dist/server/index.js",
   "start:dev": "cross-env NODE_ENV=development tsx server/index.ts",
+  "migrate:generate": "drizzle-kit generate",
+  "migrate:deploy": "drizzle-kit migrate",
   "preview": "vite preview",
   "test": "echo 'Tests will be added' && exit 0",
   "lint": "eslint . --ext .ts,.tsx",
   "health-check": "curl -f http://localhost:5000/api/health || exit 1"
 },
+
   "dependencies": {
     "@faker-js/faker": "^9.8.0",
     "@firebase/auth": "^1.10.6",
